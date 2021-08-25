@@ -30,8 +30,9 @@ class Distilbert(TextTarget):
     def __call__(self, x):
         print(x.shape)
         print(x[0])
+        new_x = x.squeeze().tolist() if len(x.shape) == (2) else x
         encoded_dict = self.tokenizer.batch_encode_plus(
-                        x.squeeze().tolist(),                      # Sentence to encode.
+                        new_x,                      # Sentence to encode.
                         add_special_tokens = True, # Add '[CLS]' and '[SEP]'
                         max_length = 512,           # Pad & truncate all sentences.
                         truncation = True,

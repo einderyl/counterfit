@@ -294,7 +294,7 @@ class TextTarget(Target):
         )
         # use the appropriate batch of samples
         results_iter = attack_cls.attack_dataset(
-            list(zip(self.active_attack.samples.tolist(), self.active_attack.results['initial']['label']))
+            list(zip(self.active_attack.samples.squeeze().tolist(), self.active_attack.results['initial']['label']))
         )
 
         results = [r.perturbed_text() for r in tqdm(results_iter)]

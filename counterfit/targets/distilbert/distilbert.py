@@ -6,7 +6,7 @@ import torch.nn.functional as F
 
 
 class Distilbert(TextTarget):
-    data_paths = ['drive/MyDrive/textstosave.txt']
+    data_path = 'drive/MyDrive/textstosave.txt'
     model_name = "db"
     model_data_type = "text"
     model_endpoint = "drive/MyDrive/distilbert"
@@ -15,7 +15,7 @@ class Distilbert(TextTarget):
     X = []
 
     def __init__(self):
-        self.X = self._get_data(self.data_paths)
+        self.X = self._get_data(self.data_path)
         self.tokenizer = DistilBertTokenizerFast.from_pretrained('distilbert-base-uncased', do_lower_case=True)
         self.model = DistilBertForSequenceClassification.from_pretrained(self.model_endpoint, num_labels=2) 
         

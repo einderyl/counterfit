@@ -1,0 +1,6 @@
+interact xgb
+load textattack
+use deepwordbug
+set target_class=1
+set sample_index=5
+run

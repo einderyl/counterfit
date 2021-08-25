@@ -61,7 +61,7 @@ class CFState:
     def _set_attack_params(self, attack_obj, parameters):
         # set defaults to the attack
         attack_obj.set_attack_parameters(parameters)
-        attack_obj.sample_index = 0
+        attack_obj.sample_index = [i for i in range(2879)]
         attack_obj.target_class = 0
 
     def add_attack_to_active_target(self, attack_name, parameters):

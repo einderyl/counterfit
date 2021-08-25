@@ -3,11 +3,11 @@ import pandas as pd
 from counterfit.core.targets import TextTarget
 
 class Xgb(TextTarget):
-    data_paths = ['drive/MyDrive/May2Dec2020_Defaced.csv']
+    data_paths = ['counterfit/targets/xgb/May2Dec2020_Defaced.csv']
     model_name = "xgb"
     model_data_type = "text"
-    model_endpoint = "drive/MyDrive/xgbmodel.pickle"
-    feature_extractor_endpoint = "drive/MyDrive/tfidf.pickle"
+    model_endpoint = "counterfit/targets/xgb/xgbmodel.pickle"
+    feature_extractor_endpoint = "counterfit/targets/xgb/tfidf.pickle"
     model_input_shape = (1,)
     model_output_classes = [0,1]
     X = []

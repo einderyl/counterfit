@@ -296,8 +296,10 @@ class TextTarget(Target):
         results_iter = attack_cls.attack_dataset(
             list(zip(self.active_attack.samples.tolist(), self.active_attack.results['initial']['label']))
         )
-
-        results = [r.perturbed_text() for r in tqdm(results_iter)]
+        print(results_iter)
+        results = []
+        for item in results_iter:
+            results += [r.perturbed_text() for r in tqdm(item)]
 
         self.active_attack.status = enums.AttackStatus.completed
         return results

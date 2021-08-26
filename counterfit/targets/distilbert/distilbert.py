@@ -30,7 +30,7 @@ class Distilbert(TextTarget):
     def __call__(self, x):
         print(x.shape)
         print(x[0])
-        new_x = x.squeeze().tolist() if len(x.shape) == (2) else x
+        new_x = x.squeeze().tolist() if len(x.shape) == (2) else x.tolist()
         encoded_dict = self.tokenizer.batch_encode_plus(
                         new_x,                      # Sentence to encode.
                         add_special_tokens = True, # Add '[CLS]' and '[SEP]'

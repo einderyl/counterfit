@@ -292,14 +292,13 @@ class TextTarget(Target):
                 logging, attack_name=self.active_attack.attack_name, attack_id=self.active_attack.attack_id
             )
         )
+        print(self.active_attack.samples)
         # use the appropriate batch of samples
         results_iter = attack_cls.attack_dataset(
-            list(zip(self.active_attack.samples.tolist(), self.active_attack.results['initial']['label']))
+            list(zip(self.active_attack.samples.squeeze().tolist(), self.active_attack.results['initial']['label']))
         )
-        print(results_iter)
-        results = []
-        for item in results_iter:
-            results += [r.perturbed_text() for r in tqdm(item)]
+
+        results = [r.perturbed_text() for r in tqdm(results_iter)]
 
         self.active_attack.status = enums.AttackStatus.completed
         return results

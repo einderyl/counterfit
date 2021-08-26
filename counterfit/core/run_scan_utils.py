@@ -74,8 +74,14 @@ def get_run_summary(target, attack=None):
     if target.model_data_type == "text":
         # Levenshtein distance
         metric = "% edit dist."
-        distances = [Levenshtein.distance(iif, ii0) for iif, ii0 in zip(i_f, i_0)]
-        rel_distance = [d / len(ii0) for d, ii0 in zip(distances, i_0)]
+        print(i_f.shape)
+        print(i_0.shape)
+        print(i_f)
+        #distances = []
+        rel_distance = []
+        for iif_array, ii0_array in zip(i_f, i_0):
+            distances = [Levenshtein.distance(iif, ii0) for iif, ii0 in zip(iif_array, ii0_array)]
+            rel_distance += [d / len(ii0) for d, ii0 in zip(distances, ii0_array)]
     elif target.model_data_type == "numpy" or target.model_data_type == "image":
         # l2 norm
         i_0 = i_0.reshape(batch_size, -1).astype(float)
